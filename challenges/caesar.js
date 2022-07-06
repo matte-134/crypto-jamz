@@ -20,9 +20,25 @@ Use `npm run test:caesar` in the terminal to test your solutions
  * @param {number} key - the amount by which to rotate the alphabet
  * @returns {string} the encrypted text in UPPERCASE
  */
-function caesarEncode (msg, key) {
-  // write a function to encode the msg using the caesar cyhper with given key and return it in UPPERCASE
-}
+function caesarEncode(msg, key) {
+  let newCode = ""
+  let alphabet = "abcdefghijklmnopqrstuvwxyz"
+  let str1 = alphabet.slice(key)
+  let str2 = alphabet.slice(0, key)
+  let newAlphabet = str1 + str2
+  for (i = 0; i < msg.length; i++) {
+    let char = msg[i];
+    if (char === " ") {
+      newCode += char
+    } else {
+      let index = alphabet.indexOf(char)
+      newCode += newAlphabet.charAt(index)
+    }
+  }
+  return newCode.toUpperCase()
+}  
+ 
+
 
 /**
  * Decrypts a message which was encrypted using the caesar cypher
@@ -31,7 +47,22 @@ function caesarEncode (msg, key) {
  * @returns {string} the decrypted (original) text in lowercase
  */
 function caesarDecode (cyp, key) {
-  // write a function which decrypts the cyp into lowercase
+  let newCode2 = ""
+  let alphabet2 = "abcdefghijklmnopqrstuvwxyz"
+  let estr1 = alphabet2.slice(key)
+  let estr2 = alphabet2.slice(0, key)
+  let newAlphabet2 = estr1 + estr2
+  cyp = cyp.toLowerCase();
+  for (i = 0; i < cyp.length; i++) {
+    let char2 = cyp[i];
+    if (char2 === " ") {
+      newCode2 += char2
+    } else {
+      let index2 = newAlphabet2.indexOf(char2)
+      newCode2 += alphabet2.charAt(index2)
+    }
+  }
+  return newCode2
 }
 
 module.exports = { caesarEncode, caesarDecode }
